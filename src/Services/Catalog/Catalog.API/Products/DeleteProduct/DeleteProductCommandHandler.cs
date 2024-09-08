@@ -10,13 +10,10 @@ public class DeleteProductCommandValidator: AbstractValidator<DeleteProductComma
     }
 }
 
-internal class DeleteProductCommandHandler(IDocumentSession documentSession, 
-    ILogger<DeleteProductCommandHandler> logger) : ICommandHandler<DeleteProductCommand>
+internal class DeleteProductCommandHandler(IDocumentSession documentSession) : ICommandHandler<DeleteProductCommand>
 {
     public async Task<Unit> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
     {
-        logger.LogInformation("Entered DeleteProductCommandHandler method..");
-
         documentSession.Delete<Product>(request.Id);
         await documentSession.SaveChangesAsync(cancellationToken);
 
