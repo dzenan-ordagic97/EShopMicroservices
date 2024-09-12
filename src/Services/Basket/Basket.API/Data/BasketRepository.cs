@@ -1,7 +1,4 @@
-﻿using Basket.API.Exceptions;
-using Marten;
-
-namespace Basket.API.Data;
+﻿namespace Basket.API.Data;
 public class BasketRepository(IDocumentSession session) : IBasketRepository
 {
     public async Task<bool> DeleteBasket(string userName, CancellationToken cancellationToken = default)
