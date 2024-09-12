@@ -1,7 +1,3 @@
-using BuildingBlocks.Behaviours;
-using BuildingBlocks.Exceptions.Handler;
-using HealthChecks.UI.Client;
-
 var builder = WebApplication.CreateBuilder(args);
 
 //Before build - Add services to the container
@@ -11,7 +7,7 @@ builder.Services.AddMediatR(config =>
 {
     config.RegisterServicesFromAssemblies(assembly);
     config.AddOpenBehavior(typeof(ValidationBehaviour<,>));
-    config.AddOpenBehavior(typeof(LoggingBehaviour<,>));   
+    config.AddOpenBehavior(typeof(LoggingBehaviour<,>));
 
 });
 builder.Services.AddValidatorsFromAssembly(assembly);

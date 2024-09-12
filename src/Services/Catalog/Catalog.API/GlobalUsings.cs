@@ -7,3 +7,6 @@ global using Marten;
 global using Microsoft.AspNetCore.Mvc;
 global using FluentValidation;
 global using Catalog.API.Data;
+global using BuildingBlocks.Behaviours;
+global using BuildingBlocks.Exceptions.Handler;
+global using HealthChecks.UI.Client;
