@@ -8,7 +8,7 @@ public class CachedBasketRepository(IBasketRepository repository, IDistributedCa
     {
         await repository.DeleteBasket(userName, cancellationToken);
 
-        await cache.RemoveAsync(userName);
+        await cache.RemoveAsync(userName, cancellationToken);
 
         return true;
     }
@@ -18,7 +18,7 @@ public class CachedBasketRepository(IBasketRepository repository, IDistributedCa
         var cachedBasket = await cache.GetStringAsync(userName, cancellationToken);
 
         if (!string.IsNullOrEmpty(cachedBasket)) 
-            return JsonSerializer.Deserialize<ShoppingCart>(cachedBasket);
+            return JsonSerializer.Deserialize<ShoppingCart>(cachedBasket)!;
 
         var basket = await repository.GetBasket(userName, cancellationToken);
 
