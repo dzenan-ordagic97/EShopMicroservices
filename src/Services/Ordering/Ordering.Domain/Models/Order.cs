@@ -5,7 +5,7 @@ namespace Ordering.Domain.Models
     public class Order : Aggregate<OrderId>
     {
         private readonly List<OrderItem> _orderItems = new();
-        private IReadOnlyList<OrderItem> Orderitems => _orderItems.AsReadOnly();
+        public IReadOnlyList<OrderItem> OrderItems => _orderItems.AsReadOnly();
 
         public CustomerId CustomerId { get; private set; } = default!;
         public OrderName OrderName { get; private set; } = default!;
@@ -15,7 +15,7 @@ namespace Ordering.Domain.Models
         public OrderStatus Status { get; private set; } = OrderStatus.Pending;
         public decimal TotalPrice
         {
-            get => Orderitems.Sum(x => x.Price * x.Quantity);
+            get => OrderItems.Sum(x => x.Price * x.Quantity);
             private set { }
         }
 
