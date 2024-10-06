@@ -2,6 +2,7 @@ using Basket.API.Data;
 using BuildingBlocks.Exceptions.Handler;
 using Discount.Grpc;
 using HealthChecks.UI.Client;
+using BuildingBlocks.Messaging.MassTransit;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,6 +47,9 @@ builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(
 
     return handler;
 });
+
+//Async Comminucation Services
+builder.Services.AddMessageBroker(builder.Configuration);
 
 
 //Cross cutting services
