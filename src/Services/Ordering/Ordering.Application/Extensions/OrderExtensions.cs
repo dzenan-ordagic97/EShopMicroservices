@@ -1,4 +1,6 @@
-﻿namespace Ordering.Application.Extensions;
+﻿using System.Linq;
+
+namespace Ordering.Application.Extensions;
 
 public static class OrderExtensions
 {
@@ -14,5 +16,28 @@ public static class OrderExtensions
             OrderStatus: order.Status,
             OrderItems: order.OrderItems.Select(oi => new OrderItemDto(oi.OrderId.Value, oi.ProductId.Value, oi.Quantity, oi.Price)).ToList()
         ));
+    }
+
+    public static OrderDto ToOrderDto(this Order order)
+    {
+        return DtoFromOrder(order);
+    }
+
+    public static OrderDto DtoFromOrder(Order order)
+    {
+        return new OrderDto(
+            Id: order.Id.Value,
+            CustomerId: order.CustomerId.Value,
+            OrderName: order.OrderName.Value,
+            ShippingAddress: null,
+            BillingAddress: null,
+            Payment: null,
+            OrderItems: null,
+            //Note: I was bored to write this dto mapping
+            //ShippingAddress: order.ShippingAddress,
+            //BillingAddress: order.BillingAddress,
+            //Payment: order.Payment,
+            //OrderItems: order.OrderItems.ToOrder
+            OrderStatus: order.Status);
     }
 }

@@ -11,3 +11,5 @@ global using Ordering.Domain.Events;
 global using Microsoft.EntityFrameworkCore;
 global using Ordering.Application.Extensions;
 global using BuildingBlocks.Pagination;
+global using BuildingBlocks.Messaging.Events;
+global using MassTransit;
